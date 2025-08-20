@@ -3,7 +3,7 @@ name: Demo Workflow   # Workflow name
 
 on: push              # Trigger (runs on push)
 path:
-"testfile.txt"
+- "testfile.txt"
 jobs:
   build:              # Job name
     runs-on: ubuntu-latest
