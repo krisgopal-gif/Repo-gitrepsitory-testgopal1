@@ -1,9 +1,25 @@
-name: Demo Workflow   # Workflow name
+name: Input Workflow
 
-on: [push]
+on:
+  workflow_dispatch:
+   inputs:
+    username:
+     description: "enter your name"
+     required: true
+     default: "guest"
+
+
 jobs:
-  show-contexts:             # Job name
+  greeting_job:
     runs-on: ubuntu-latest
+    
+    
     steps:
-      - name: show the Github Contexts
-        run: echo "event by ${{github.actor}} on branch ${{github.ref}}"
+      - name: "Step 1"
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env:
+          First_Name: sandeep
+          DAY_OF_WEEK: sunday
+          Greeting: Hello
+      - name: print usename
+        run: echo "$github.event.inputs.username"
